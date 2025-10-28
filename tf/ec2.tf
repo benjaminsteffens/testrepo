@@ -4,8 +4,8 @@ data "template_file" "ec2_user_data" {
 
 resource "aws_instance" "webserver1" {
   ami                         = "ami-0cfde0ea8edd312d4"
-  instance_type               = "t2.micro"
-  availability_zone           = "us-east-2a"
+  instance_type               = var.instance_type
+  availability_zone           = var.az_1
   associate_public_ip_address = true
   vpc_security_group_ids      = [aws_security_group.securitygroup_1.id]
   subnet_id                   = aws_subnet.sub_1.id
@@ -19,8 +19,8 @@ resource "aws_instance" "webserver1" {
 
 resource "aws_instance" "webserver2" {
   ami                         = "ami-0cfde0ea8edd312d4"
-  instance_type               = "t2.micro"
-  availability_zone           = "us-east-2b"
+  instance_type               = var.instance_type
+  availability_zone           = var.az_2
   associate_public_ip_address = true
   vpc_security_group_ids      = [aws_security_group.securitygroup_2.id]
   subnet_id                   = aws_subnet.sub_2.id
